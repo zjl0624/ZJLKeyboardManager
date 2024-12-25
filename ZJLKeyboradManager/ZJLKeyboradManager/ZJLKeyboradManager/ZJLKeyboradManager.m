@@ -10,6 +10,8 @@ static id _instance;
 @interface ZJLKeyboradManager ()
 @property (nonatomic,strong) UITapGestureRecognizer *tapBg;
 @property (nonatomic,strong) UIView *textFieldView;
+@property (nonatomic,assign) CGFloat keyboardHeight;
+@property (nonatomic,assign) CGFloat keyboardShowDuration;
 
 @end
 @implementation ZJLKeyboradManager
@@ -58,13 +60,11 @@ static id _instance;
 - (void)keyboardAction:(NSNotification*)sender {
     NSDictionary *useInfo = [sender userInfo];
     NSValue *value = [useInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    _keyboardHeight = [value CGRectValue].size.height;
+    _keyboardShowDuration = [[useInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     // <注意>具有约束的控件通过改变约束值进行frame的改变处理
     if([sender.name isEqualToString:UIKeyboardWillShowNotification]){
-        if (_isAutoScroll == YES) {
-            [UIApplication sharedApplication].delegate.window.bounds = CGRectMake(0, [self caculatorScrollDistance:[value CGRectValue].size.height], [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-            
-
-        }
+        [self autoScrollWindow];
         if (_allowClickBgToHide == YES) {
             _tapBg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBg:)];
             [[UIApplication sharedApplication].delegate.window addGestureRecognizer:_tapBg];
@@ -99,27 +99,41 @@ static id _instance;
 
 - (void)textFieldDidBeginEditing:(NSNotification *)sender {
     _textFieldView = sender.object;
+    [self autoScrollWindow];
 }
 
 - (void)textFieldDidEndEditing:(NSNotification *)sender  {
-    _textFieldView = sender.object;
+    _textFieldView = nil;
 }
 
 - (void)textViewDidBeginEditing:(NSNotification *)sender {
     _textFieldView = sender.object;
+    [self autoScrollWindow];
 }
 
 - (void)textViewDidEndEditing:(NSNotification *)sender {
-    _textFieldView = sender.object;
+    _textFieldView = nil;
+    
 }
 
-- (CGFloat)caculatorScrollDistance:(CGFloat)keyboradHeight {
+- (void)autoScrollWindow{
+    if (_isAutoScroll == YES && _keyboardHeight > 0 && _textFieldView != nil) {
+        [UIView animateWithDuration:_keyboardShowDuration animations:^{
+            [UIApplication sharedApplication].delegate.window.bounds = CGRectMake(0, [self caculatorScrollDistance:_keyboardHeight], [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        }];
+
+        
+
+    }
+}
+
+- (CGFloat)caculatorScrollDistance:(CGFloat)keyboardHeight {
     CGRect textFieldViewRect = [[UIApplication sharedApplication].delegate.window convertRect:_textFieldView.frame toView:nil];
     CGFloat textFieldViewToBottom = [UIScreen mainScreen].bounds.size.height - textFieldViewRect.origin.y - textFieldViewRect.size.height;
-    if (textFieldViewToBottom > keyboradHeight) {
+    if (textFieldViewToBottom > keyboardHeight) {
         return 0;
     }else {
-        return keyboradHeight - textFieldViewToBottom;
+        return keyboardHeight - textFieldViewToBottom;
     }
 }
 @end

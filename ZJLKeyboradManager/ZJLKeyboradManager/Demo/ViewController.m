@@ -42,5 +42,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    [ZJLKeyboradManager sharedInstance].allowClickBgToHide = NO;
+//    [ZJLKeyboradManager sharedInstance].isAutoScroll = NO;
 }
 @end
