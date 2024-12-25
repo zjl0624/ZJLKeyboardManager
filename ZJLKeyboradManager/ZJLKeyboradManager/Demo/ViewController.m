@@ -39,5 +39,8 @@
     [ZJLKeyboradManager sharedInstance].isEnabled = YES;;
 }
 
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    [ZJLKeyboradManager sharedInstance].allowClickBgToHide = NO;
+}
 @end

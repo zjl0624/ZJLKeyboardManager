@@ -60,14 +60,21 @@ static id _instance;
     NSValue *value = [useInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     // <注意>具有约束的控件通过改变约束值进行frame的改变处理
     if([sender.name isEqualToString:UIKeyboardWillShowNotification]){
-//        KeyWindow.bounds = CGRectMake(0, [value CGRectValue].size.height, kScreenWidth, kScreenHeight);
+        if (_isAutoScroll == YES) {
+            [UIApplication sharedApplication].delegate.window.bounds = CGRectMake(0, [self caculatorScrollDistance:[value CGRectValue].size.height], [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+            
+
+        }
         if (_allowClickBgToHide == YES) {
             _tapBg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickBg:)];
             [[UIApplication sharedApplication].delegate.window addGestureRecognizer:_tapBg];
         }
 
     }else{
-//        KeyWindow.bounds = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        if (_isAutoScroll == YES) {
+            [UIApplication sharedApplication].delegate.window.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        }
+
         [[UIApplication sharedApplication].delegate.window removeGestureRecognizer:_tapBg];
     }
 }
@@ -104,5 +111,15 @@ static id _instance;
 
 - (void)textViewDidEndEditing:(NSNotification *)sender {
     _textFieldView = sender.object;
+}
+
+- (CGFloat)caculatorScrollDistance:(CGFloat)keyboradHeight {
+    CGRect textFieldViewRect = [[UIApplication sharedApplication].delegate.window convertRect:_textFieldView.frame toView:nil];
+    CGFloat textFieldViewToBottom = [UIScreen mainScreen].bounds.size.height - textFieldViewRect.origin.y - textFieldViewRect.size.height;
+    if (textFieldViewToBottom > keyboradHeight) {
+        return 0;
+    }else {
+        return keyboradHeight - textFieldViewToBottom;
+    }
 }
 @end
