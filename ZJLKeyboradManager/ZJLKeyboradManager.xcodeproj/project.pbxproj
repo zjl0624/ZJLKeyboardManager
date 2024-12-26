@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142E95732D1CE42E004F6179 /* ZJLKeyboardToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 142E95722D1CE42E004F6179 /* ZJLKeyboardToolBar.m */; };
+		142E95762D1CE43D004F6179 /* ZJLKeyboardToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142E95752D1CE43D004F6179 /* ZJLKeyboardToolBarView.m */; };
 		14D0EA242D1BA3F100879365 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0EA232D1BA3F100879365 /* AppDelegate.m */; };
 		14D0EA272D1BA3F100879365 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0EA262D1BA3F100879365 /* SceneDelegate.m */; };
 		14D0EA2A2D1BA3F100879365 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0EA292D1BA3F100879365 /* ViewController.m */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		142E95712D1CE42E004F6179 /* ZJLKeyboardToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJLKeyboardToolBar.h; sourceTree = "<group>"; };
+		142E95722D1CE42E004F6179 /* ZJLKeyboardToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJLKeyboardToolBar.m; sourceTree = "<group>"; };
+		142E95742D1CE43D004F6179 /* ZJLKeyboardToolBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJLKeyboardToolBarView.h; sourceTree = "<group>"; };
+		142E95752D1CE43D004F6179 /* ZJLKeyboardToolBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJLKeyboardToolBarView.m; sourceTree = "<group>"; };
 		14D0EA1F2D1BA3F100879365 /* ZJLKeyboradManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJLKeyboradManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D0EA222D1BA3F100879365 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14D0EA232D1BA3F100879365 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -84,6 +90,10 @@
 			children = (
 				14D0EA3D2D1BA5FC00879365 /* ZJLKeyboradManager.h */,
 				14D0EA3E2D1BA5FC00879365 /* ZJLKeyboradManager.m */,
+				142E95712D1CE42E004F6179 /* ZJLKeyboardToolBar.h */,
+				142E95722D1CE42E004F6179 /* ZJLKeyboardToolBar.m */,
+				142E95742D1CE43D004F6179 /* ZJLKeyboardToolBarView.h */,
+				142E95752D1CE43D004F6179 /* ZJLKeyboardToolBarView.m */,
 			);
 			path = ZJLKeyboradManager;
 			sourceTree = "<group>";
@@ -168,10 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D0EA2A2D1BA3F100879365 /* ViewController.m in Sources */,
+				142E95732D1CE42E004F6179 /* ZJLKeyboardToolBar.m in Sources */,
 				14D0EA242D1BA3F100879365 /* AppDelegate.m in Sources */,
 				14D0EA352D1BA3F700879365 /* main.m in Sources */,
 				14D0EA3F2D1BA5FD00879365 /* ZJLKeyboradManager.m in Sources */,
 				14D0EA272D1BA3F100879365 /* SceneDelegate.m in Sources */,
+				142E95762D1CE43D004F6179 /* ZJLKeyboardToolBarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

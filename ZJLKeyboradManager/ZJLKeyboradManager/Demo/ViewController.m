@@ -37,11 +37,13 @@
     [self.view addSubview:_textView];
     
     [ZJLKeyboradManager sharedInstance].isEnabled = YES;;
+    [ZJLKeyboradManager sharedInstance].content = @"完成";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    [ZJLKeyboradManager sharedInstance].allowClickBgToHide = NO;
 //    [ZJLKeyboradManager sharedInstance].isAutoScroll = NO;
+//    [ZJLKeyboradManager sharedInstance].isShowToolBar = NO;
 }
 @end
